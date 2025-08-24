@@ -1,0 +1,135 @@
+<div class="min-h-screen bg-gray-50">
+    
+
+    <!-- Main content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">
+                    Sistema de Localização de Igrejas
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Encontre igrejas próximas, cadastre novas igrejas e visualize todas as denominações em um mapa
+                    interativo.
+                </p>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-blue-50 rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">{{ totalChurches }}</div>
+                    <div class="text-blue-800 font-medium">Igrejas Cadastradas</div>
+                </div>
+                <div class="bg-green-50 rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">{{ totalDenominations }}</div>
+                    <div class="text-green-800 font-medium">Denominações</div>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">{{ totalCities }}</div>
+                    <div class="text-purple-800 font-medium">Cidades</div>
+                </div>
+            </div>
+
+            <!-- Cards de ação -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Cadastrar Igreja</h3>
+                        <p class="text-gray-600 mb-4">Adicione uma nova igreja ao sistema com informações completas.</p>
+                        <a routerLink="/cadastro"
+                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                            Cadastrar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Visualizar Mapa</h3>
+                        <p class="text-gray-600 mb-4">Explore todas as igrejas em um mapa interativo com filtros.</p>
+                        <a routerLink="/mapa"
+                            class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                            Ver Mapa
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Buscar Igrejas</h3>
+                        <p class="text-gray-600 mb-4">Encontre igrejas por nome, denominação ou localização.</p>
+                        <a routerLink="/busca"
+                            class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
+                            Buscar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @if (featured.length > 0) {
+                <div class="bg-white border border-yellow-200 rounded-lg p-6 mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Igrejas em Destaque</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        @for (church of featured; track church.id) {
+                            <div class="border border-gray-200 rounded-lg p-4 bg-yellow-50">
+                                <h3 class="font-semibold text-gray-900 mb-1">{{ church.name }}</h3>
+                                <p class="text-sm text-gray-600 mb-2">{{ church.denomination }}</p>
+                                <p class="text-sm text-gray-500">{{ church.city }}, {{ church.state }}</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <!-- Últimas igrejas cadastradas -->
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Últimas Igrejas Cadastradas</h2>
+                @if (recentChurches.length > 0) {
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @for (church of recentChurches; track church.id) {
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                        <h3 class="font-semibold text-gray-900 mb-1">{{ church.name }}</h3>
+                        <p class="text-sm text-gray-600 mb-2">{{ church.denomination }}</p>
+                        <p class="text-sm text-gray-500">{{ church.city }}, {{ church.state }}</p>
+                        <p class="text-xs text-gray-400 mt-2">
+                            Cadastrada em {{ church.createdAt | date:'dd/MM/yyyy' }}
+                        </p>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="text-center py-8">
+                    <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <p class="text-gray-500">Nenhuma igreja cadastrada ainda.</p>
+                    <a routerLink="/cadastro"
+                        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors mt-4">
+                        Cadastrar Primeira Igreja
+                    </a>
+                </div>
+                }
+            </div>
+        </div>
+    </main>
+</div>

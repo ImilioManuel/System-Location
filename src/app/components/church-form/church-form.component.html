@@ -1,0 +1,142 @@
+<div class="max-w-4xl mx-auto">
+  <div class="bg-white rounded-lg shadow-sm p-6">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Cadastrar Nova Igreja</h1>
+
+    <h2 class="text-xl font-bold text-gray-900 mb-6">Dados da Igreja</h2>
+    <form [formGroup]="churchForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Igreja *</label>
+          <input type="text" formControlName="name"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Número da igreja *</label>
+          <input type="text" formControlName="denomination"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Acrónimo *</label>
+          <input type="text" formControlName="city"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nº de Templos *</label>
+          <input type="text" formControlName="state"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nº de Fieis</label>
+          <input type="text" formControlName="neighborhood"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nº de Minístros de Culto</label>
+          <input type="text" formControlName="neighborhood"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Província *</label>
+          <input type="text" formControlName="city"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Município *</label>
+          <input type="text" formControlName="state"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Bairro</label>
+          <input type="text" formControlName="neighborhood"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-4">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Coordenadas GPS</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Latitude</label>
+            <input type="number" formControlName="latitude" step="any"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Longitude</label>
+            <input type="number" formControlName="longitude" step="any"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md" />
+          </div>
+        </div>
+        <button type="button" (click)="getCurrentLocation()"
+          class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+          Obter Localização Atual
+        </button>
+      </div>
+      <div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Logotipo da Igreja</label>
+          <input type="file" accept="image/*" (change)="onPhotoSelected($event)" class="w-full" />
+          @if (churchForm.value.photo) {
+          <img [src]="churchForm.value.photo" alt="Pré-visualização" class="mt-2 h-20 w-20 object-cover rounded" />
+          }
+        </div>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900 mb-6">Dados do Responsável da Igreja</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
+          <input type="text" formControlName="responsible"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Telefone (Opcional)</label>
+          <input type="tel" formControlName="phone"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">E-mail *</label>
+          <input type="email" formControlName="email"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp *</label>
+          <input type="tel" formControlName="whatsapp"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Data de nascimento *</label>
+          <input type="email" formControlName="email"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Horários de Culto</label>
+          <textarea formControlName="schedulesText" rows="3" placeholder="Ex: Domingo 09:00, 18:00; Quarta 19:30"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"></textarea>
+          <p class="text-xs text-gray-500 mt-1">Use ";" para separar dias e "," para múltiplos horários.</p>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+        <button type="button" (click)="onCancel()"
+          class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+          Cancelar
+        </button>
+        <button type="submit" [disabled]="churchForm.invalid"
+          class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50">
+          Cadastrar Igreja
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
